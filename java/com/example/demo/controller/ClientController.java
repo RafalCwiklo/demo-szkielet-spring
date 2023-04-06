@@ -2,13 +2,13 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Client;
 import com.example.demo.service.ClientService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,7 +20,7 @@ public class ClientController {
 
     //public ResponseEntity<Client> createClient(@RequestBody final Report report) {
     @PostMapping
-    public ResponseEntity<Client> createClient(@RequestBody final Client client) {
+    public ResponseEntity<Client> createClient(@Valid @RequestBody final Client client) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(clientService.createClient(client));
